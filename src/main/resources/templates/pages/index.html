@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/master-layout}"
+>
+<head>
+    <title>Homepage</title>
+</head>
+<body>
+    <main layout:fragment="main-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-4" th:each="article: ${articles}" th:object="${article}">
+                    <div th:replace="fragments/Card :: card-read-only(*{uuid},*{title},*{thumnail},*{author})"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

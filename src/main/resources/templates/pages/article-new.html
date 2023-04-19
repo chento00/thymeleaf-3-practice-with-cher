@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/master-layout}"
+>
+<head>
+    <title>Homepage</title>
+</head>
+<body>
+<main layout:fragment="main-content">
+    <div class="container p-2">
+        <h1>Create new Article</h1>
+        <form style="height: 300px" th:action="@{http://localhost:8080/article/new}" method="post" th:object="${article}" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label  class="form-label">Title : </label>
+                        <input type="text" class="form-control"  aria-describedby="emailHelp" th:field="*{title}">
+                        <p class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">please fill in</p>
+                    </div>
+                    <div class="mb-3">
+                        <label  class="form-label">Author : </label>
+                        <input type="text" class="form-control"  aria-describedby="emailHelp" th:field="*{author}">
+                        <p class="text-danger" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">please fill in</p>
+
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label for="thumbnail" class="form-label">Default file input example</label>
+                        <input class="form-control" type="file" name="thumbnail"  id="thumbnail" onchange="previewImage(event)">
+                    </div>
+                    <img id="preview" class="bg-dark w-50 h-100 mb-3" >
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</main>
+    <th:block layout:fragment="sub-script">
+        <script>
+            function previewImage(event) {
+                const input = event.target;
+                if (input.files && input.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const previewImage = document.getElementById('preview');
+                        previewImage.src = e.target.result;
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+        </script>
+    </th:block>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<section xmlns:th="http://www.thymeleaf.org">
+  <a th:fragment="card-read-only(uuid,title,thumbnail,author)"
+     href="@{/article/{uuid}(uuid=${uuid})}"
+     class="col-md-5 text-decoration-none" style="text-decoration: none">
+    <div class="card mb-4 box-shadow">
+      <img th:src="@{http://localhost:8080/files/{thumbnail}(thumbnail=${thumbnail})}" class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"  data-holder-rendered="true">
+      <div class="card-body">
+        <p class="card-text"  th:text="${title}"></p>
+        <div class="d-flex justify-content-between align-items-center">
+          <small class="text-muted" th:text="${author}"></small>
+        </div>
+      </div>
+    </div>
+  </a>
+  <div th:fragment="card-action (uuid,title,thumbnail,author)" class="mt-2" >
+    <div class="card box-shadow">
+      <img  th:src="@{http://localhost:8080/files/{thumbnail}(thumbnail=${thumbnail})}" class="card-img-top" data-src="" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" data-holder-rendered="true">
+      <div class="card-body">
+        <p class="card-text" th:text="${title}"></p>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <a href="#" type="button" class="btn btn-sm btn-outline-success">View</a>
+            <a href="#" type="button" class="btn btn-sm btn-outline-primary">Edit</a>
+            <a href="#" type="button" class="btn btn-sm btn-outline-danger">Delete</a>
+          </div>
+          <small class="text-muted" th:text="${author}"></small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

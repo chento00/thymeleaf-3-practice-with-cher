@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html   xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">ISTAD</title>
+    <th:block th:replace="fragments/meta"></th:block>
+    <th:block th:replace="fragments/style"></th:block>
+</head>
+<body>
+    <header th:replace="~{fragments/header}"></header>
+    <main th:replace="~{fragments/placeholder-master}"></main>
+    <footer th:replace="~{fragments/footer}"></footer>
+    <th:block th:replace="fragments/script"></th:block>
+    <th:block layout:fragment="sub-script"></th:block>
+</body>
+</html>
